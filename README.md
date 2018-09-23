@@ -1,8 +1,8 @@
 # FORTRAN95 lexical analyzer
-This project is a hand-written parser for FORTRAN95 programming language lexem parsing.  
-Used language: Haskell  
+This project is a hand-written parser for FORTRAN95 programming language lexem parsing.\
+Used language: Haskell\
 Authors: Denis Chernikov, Vladislav Kuleykin
-## How to run
+## How to run project
 From main folder of the project (Haskell Environment could be installed):
 ```bash
 stack build && stack exec lex-fortran-exe
@@ -11,8 +11,13 @@ Otherwise, find an executable at:
 ```
 \.stack-work\dist\7d103d30\build\lex-fortran-exe\lex-fortran-exe.exe
 ```
-Input file (by default): `in.txt`
+Input file (by default): `in.txt`\
 Output file (by default): `out.txt`
+## How to run tests
+From main folder of the project (Haskell Environment could be installed):
+```bash
+stack build && stack test
+```
 ## Project assumptions
 In our project we were about to implement a lexical analyzer for a given programming language (in case of our team - Fortran).
 * Because there exist some different versions of it, we are considering FORTRAN95 - language standart of 1995 year edition.
