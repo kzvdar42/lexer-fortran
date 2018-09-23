@@ -1,9 +1,9 @@
-h1 FORTRAN95 lexical analyzer
+# FORTRAN95 lexical analyzer
 =====================
 This project is a hand-written parser for FORTRAN95 programming language lexem parsing.
 Used language: Haskell
 Authors: Denis Chernikov, Vladislav Kuleykin
-h2 How to run
+## How to run
 -----------------------------------
 From main folder of the project (Haskell Environment could be installed):
 ```bash
@@ -15,7 +15,7 @@ Otherwise, find an executable at:
 ```
 Input file (by default): `in.txt`
 Output file (by default): `out.txt`
-h2 Project assumptions
+## Project assumptions
 -----------------------------------
 In our project we were about to implement a lexical analyzer for a given programming language (in case of our team - Fortran).
 * Because there exist some different versions of it, we are considering FORTRAN95 - language standart of 1995 year edition.
@@ -35,7 +35,7 @@ parse :: String -> [Token]
 * All number signs (except the exponent sign in `Real`) are left for the syntax analyzer as unary operators.
 * Complex numbers, like `(3.5, -2.17e-5)` are left to the syntax anayzer (it is easy to handle them by syntax also).
 * `Character` - name of datatype in FORTRAN, which is equivalent to a single character or a sequence of characters (actually - string).
-h2 Short Haskell introduction
+## Short Haskell introduction
 -----------------------------------
 ```Haskell
 -- This is singe-line comment.
