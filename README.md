@@ -1,10 +1,8 @@
 # FORTRAN95 lexical analyzer
-=====================
 This project is a hand-written parser for FORTRAN95 programming language lexem parsing.
 Used language: Haskell
 Authors: Denis Chernikov, Vladislav Kuleykin
 ## How to run
------------------------------------
 From main folder of the project (Haskell Environment could be installed):
 ```bash
 stack build && stack exec lex-fortran-exe
@@ -16,7 +14,6 @@ Otherwise, find an executable at:
 Input file (by default): `in.txt`
 Output file (by default): `out.txt`
 ## Project assumptions
------------------------------------
 In our project we were about to implement a lexical analyzer for a given programming language (in case of our team - Fortran).
 * Because there exist some different versions of it, we are considering FORTRAN95 - language standart of 1995 year edition.
 * Also because of harder symbol-positioning considering (and no actual need in modern versions) we are using free-identiation standart version, i.e. no exact sybol positions (columns), string lengths etc. are considered.
@@ -36,7 +33,6 @@ parse :: String -> [Token]
 * Complex numbers, like `(3.5, -2.17e-5)` are left to the syntax anayzer (it is easy to handle them by syntax also).
 * `Character` - name of datatype in FORTRAN, which is equivalent to a single character or a sequence of characters (actually - string).
 ## Short Haskell introduction
------------------------------------
 ```Haskell
 -- This is singe-line comment.
 
