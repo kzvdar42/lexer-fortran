@@ -35,7 +35,8 @@ parse :: String -> [Token]
 * Question mark `?` is parsed as a one that is allowed in the language, but no usage of it was actually found.
 * FORTRAN95 has kind type parameters for literal constants, but our lexer parses them as individual id tokens, so we left them for the syntax analiser to consider.
 * No generalization of functions was applied, but places where changes could be done are obviously pointed by comments and docs.
-* All number signs (except the exponent sign in `Real`) are left for the syntax analyzer as unary operators.
+* We aggregated all numeric constants into `TNumber` token
+* All number signs (except the exponent sign inside `TNumber`) are left for the syntax analyzer as unary operators.
 * Complex numbers, like `(3.5, -2.17e-5)` are left to the syntax anayzer (it is easy to handle them by syntax also).
 * `Character` - name of datatype in Fortran, which is equivalent to a single character or a sequence of characters (actually - string).
 ## Short Haskell introduction
@@ -91,7 +92,7 @@ sumEven (head:tail)
 ```
 ### TKeyword
 ```regex
-"NULL()"|"ALLOCATE"|"ALLOCATABLE"|"ASSIGN","ASSIGNMENT"|"AUTOMATIC"|"BACKSPACE"|"BLOCK"|"CALL"|"CASE","CHARACTER"|"CLOSE"|"COMMON"|"COMPLEX"|"CONTAINS"|"CONTINUE"|"CYCLE","DATA"|"DEALLOCATE"|"DEFAULT"|"DIMENSION"|"DO","DOUBLE"|"ELEMENTAL"|"ELSE"|"ELSEIF"|"ELSEWHERE","END"|"ENDDO"|"ENDIF"|"ENDFILE"|"ENTRY","EQUIVALENCE"|"EXIT"|"EXTERNAL","FORALL"|"FORMAT"|"FUNCTION"|"GO"|"GOTO"|"IOLENGTH","IF"|"IMPLICIT"|"IN"|"INCLUDE"|"INOUT"|"INTEGER"|"INTENT"|"INTERFACE","INTRINSIC"|"INQUIRE"|"KIND"|"LEN"|"LOGICAL"|"MODULE","NAMELIST"|"NONE"|"NULLIFY","ONLY"|"OPEN"|"OPERATOR"|"OPTIONAL"|"OUT"|"PARAMETER","PAUSE"|"POINTER"|"PRECISION"|"PRINT"|"PRIVATE"|"PROCEDURE","PROGRAM"|"PUBLIC"|"PURE"|"REAL"|"READ"|"RECURSIVE"|"RESULT","RETURN"|"REWIND"|"SAVE"|"SELECT"|"SEQUENCE"|"SOMETYPE"|"SQRT"|"STAT","STOP"|"SUBROUTINE"|"TARGET"|"TO"|"THEN"|"TYPE","UNIT"|"USE"|"VOLATILE"|"WHERE"|"WHILE"|"WRITE"|"null()"|...|"write"
+"NULL()"|"ALLOCATE"|"ALLOCATABLE"|"ASSIGN"|"ASSIGNMENT"|"AUTOMATIC"|"BACKSPACE"|"BLOCK"|"CALL"|"CASE"|"CHARACTER"|"CLOSE"|"COMMON"|"COMPLEX"|"CONTAINS"|"CONTINUE"|"CYCLE"|"DATA"|"DEALLOCATE"|"DEFAULT"|"DIMENSION"|"DO"|"DOUBLE"|"ELEMENTAL"|"ELSE"|"ELSEIF"|"ELSEWHERE"|"END"|"ENDDO"|"ENDIF"|"ENDFILE"|"ENTRY"|"EQUIVALENCE"|"EXIT"|"EXTERNAL"|"FORALL"|"FORMAT"|"FUNCTION"|"GO"|"GOTO"|"IOLENGTH"|"IF"|"IMPLICIT"|"IN"|"INCLUDE"|"INOUT"|"INTEGER"|"INTENT"|"INTERFACE"|"INTRINSIC"|"INQUIRE"|"KIND"|"LEN"|"LOGICAL"|"MODULE"|"NAMELIST"|"NONE"|"NULLIFY"|"ONLY"|"OPEN"|"OPERATOR"|"OPTIONAL"|"OUT"|"PARAMETER"|"PAUSE"|"POINTER"|"PRECISION"|"PRINT"|"PRIVATE"|"PROCEDURE"|"PROGRAM"|"PUBLIC"|"PURE"|"REAL"|"READ"|"RECURSIVE"|"RESULT"|"RETURN"|"REWIND"|"SAVE"|"SELECT"|"SEQUENCE"|"SOMETYPE"|"SQRT"|"STAT"|"STOP"|"SUBROUTINE"|"TARGET"|"TO"|"THEN"|"TYPE"|"UNIT"|"USE"|"VOLATILE"|"WHERE"|"WHILE"|"WRITE"|"null()"|"allocate"|"allocatable"|"assign"|"assignment"|"automatic"|"backspace"|"block"|"call"|"case"|"character"|"close"|"common"|"complex"|"contains"|"continue"|"cycle"|"data"|"deallocate"|"default"|"dimension"|"do"|"double"|"elemental"|"else"|"elseif"|"elsewhere"|"end"|"enddo"|"endif"|"endfile"|"entry"|"equivalence"|"exit"|"external"|"forall"|"format"|"function"|"go"|"goto"|"iolength"|"if"|"implicit"|"in"|"include"|"inout"|"integer"|"intent"|"interface"|"intrinsic"|"inquire"|"kind"|"len"|"logical"|"module"|"namelist"|"none"|"nullify"|"only"|"open"|"operator"|"optional"|"out"|"parameter"|"pause"|"pointer"|"precision"|"print"|"private"|"procedure"|"program"|"public"|"pure"|"real"|"read"|"recursive"|"result"|"return"|"rewind"|"save"|"select"|"sequence"|"sometype"|"sqrt"|"stat"|"stop"|"subroutine"|"target"|"to"|"then"|"type"|"unit"|"use"|"volatile"|"where"|"while"|"write"
 ```
 ### TId
 ```regex
