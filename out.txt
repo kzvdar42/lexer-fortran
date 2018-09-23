@@ -159,10 +159,7 @@ TKeyword "parameter"
 TDblColon
 TId "G_cgs"
 TEquals
-TNumber "6.67300"
-TId "d"
-TMinus
-TNumber "08"
+TNumber "6.67300d-08"
 TNewLine
 TKeyword "real"
 TLParen
@@ -173,10 +170,7 @@ TKeyword "parameter"
 TDblColon
 TId "G_si"
 TEquals
-TNumber "6.67300"
-TId "d"
-TMinus
-TNumber "11"
+TNumber "6.67300d-11"
 TNewLine
 TNewLine
 TComment "  N = kg.m/s^2 = [G]*kg^2/m**2"
@@ -191,10 +185,7 @@ TKeyword "parameter"
 TDblColon
 TId "k_cgs"
 TEquals
-TNumber "1.380650424"
-TId "d"
-TMinus
-TNumber "16"
+TNumber "1.380650424d-16"
 TComment " erg/K"
 TKeyword "real"
 TLParen
@@ -205,10 +196,7 @@ TKeyword "parameter"
 TDblColon
 TId "k_si"
 TEquals
-TNumber "1.380650424"
-TId "d"
-TMinus
-TNumber "23"
+TNumber "1.380650424d-23"
 TComment "   J/K"
 TNewLine
 TKeyword "real"
@@ -220,10 +208,7 @@ TKeyword "parameter"
 TDblColon
 TId "h_cgs"
 TEquals
-TNumber "6.6260689633"
-TId "d"
-TMinus
-TNumber "27"
+TNumber "6.6260689633d-27"
 TComment " ergs.s  "
 TKeyword "real"
 TLParen

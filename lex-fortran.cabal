@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b2db1f6e9e4a9eaf650ea3c5d677a4a396d8e3d177b82dd34f7d8f74914d492a
+-- hash: 4e19efefa61ed250b1c4539f9f0a7730abb1720ecf1573ba3effacf13a3d6f85
 
 name:           lex-fortran
-version:        0.1.0.0
+version:        0.1.0.1
 synopsis:       Lexical analyser for FORTRAN95 programming language
 category:       Compilation
 author:         Denis Chernikov, Vladislav Kuleykin

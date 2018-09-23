@@ -32,7 +32,7 @@ data Token
   | TKeyword String
   | TId String
   | TBinConstant String
-  | TDecConstant String
+  | TOctConstant String
   | THexConstant String
   | TNumber String
   | TCharacter String
@@ -90,7 +90,7 @@ allTokens =
   , TKeyword ""
   , TId ""
   , TBinConstant ""
-  , TDecConstant ""
+  , TOctConstant ""
   , THexConstant ""
   , TNumber ""
   , TCharacter ""
@@ -184,10 +184,11 @@ suitsToken (ch:chs) (TId _)
     isValidTail s = and $ map (
         \c -> isLetter c || isDigit c || c == '_' || c == '$' || c == '@'
       ) s
--- === Constants
+-- === Numeric constants
 suitsToken s (TBinConstant _)
   | first && length s == 1 = (False, True)
-  | first && (second == '\'' || second == '"') && isBinary (drop 2 s) = (False, True)
+  | first &&
+    (second == '\'' || second == '"') && isBinary (drop 2 s) = (False, True)
   | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
   | first && second == '"' && fromThird s && last s == '"' = (True, True)
   | otherwise = (False, False)
@@ -197,10 +198,10 @@ suitsToken s (TBinConstant _)
     fromThird str = isBinary . drop 2 $ init str
     isBinary [] = True
     isBinary (c:cs) = (c == '1' || c == '0') && isBinary cs
-
 suitsToken s (TOctConstant _)
   | first && length s == 1 = (False, True)
-  | first && (second == '\'' || second == '"') && isOct (drop 2 s) = (False, True)
+  | first &&
+    (second == '\'' || second == '"') && isOct (drop 2 s) = (False, True)
   | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
   | first && second == '"' && fromThird s && last s == '"' = (True, True)
   | otherwise = (False, False)
@@ -209,27 +210,29 @@ suitsToken s (TOctConstant _)
     second = s !! 1
     fromThird str = isOct . drop 2 $ init str
     isOct []  = True
-    isOct (ch:chs) = fst $ isSubForList ["0","1","2","3","4","5","6","7"] ch && isOct chs
-
+    isOct (ch:chs) = (
+        fst $ isSubForList ["0","1","2","3","4","5","6","7"] [ch]
+      ) && isOct chs
 suitsToken s (THexConstant _)
   | first && length s == 1 = (False, True)
-  | first && (second == '\'' || second == '"') && isHec (drop 2 s) = (False, True)
+  | first &&
+    (second == '\'' || second == '"') && isHec (drop 2 s) = (False, True)
   | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
   | first && second == '"' && fromThird s && last s == '"' = (True, True)
   | otherwise = (False, False)
   where
-    first = (toUpper $ head s) == 'H' 
+    first = (toUpper $ head s) == 'Z' 
     second = s !! 1
     fromThird str = isHec . drop 2 $ init str
     isHec [] = True
-    isHec (ch:chs) = (isDigit ch || (fst $ isSubForList ["A","B","C","D","E","F"] [ch])) && isHec chs
-
-      
+    isHec (ch:chs) = (
+        isDigit ch || (fst $ isSubForList ["A","B","C","D","E","F"] [ch])
+      ) && isHec chs
 -- === Number
 suitsToken s (TNumber _) =
   let 
     isDot = (\c -> c == '.')
-    isE   = (\c -> c == 'e' || c == 'E')
+    isE   = (\c -> fst $ isSubForList ["E", "D", "Q"] [c])
     isOp  = (\c -> c == '+' || c == '-')
     isInt str = and $ map isDigit str
     toTuple b = (b,b)
@@ -242,13 +245,19 @@ suitsToken s (TNumber _) =
       case findIndex isE s of
         Nothing -> (isInt s, isInt s)
         Just posOfE -> 
-          let (beforeE, afterE) = divideBy posOfE s
+          let 
+            (beforeE, afterE) = divideBy posOfE s
+            beforeEIsGood = isInt beforeE && length beforeE > 0
           in case findIndex isOp afterE of
-            Nothing ->
-              toTuple (isInt beforeE && isInt afterE && length afterE > 0)
+            Nothing -> 
+              if length afterE == 0 
+              then (False, beforeEIsGood) 
+              else toTuple (beforeEIsGood && isInt afterE)
             Just _ ->
               let (_, afterOp) = splitAt 1 afterE
-              in toTuple(isInt beforeE && isInt afterOp && length afterOp >0)
+              in if length afterOp == 0 
+              then (False, beforeEIsGood) 
+              else toTuple (beforeEIsGood && isInt afterOp)
     Just posOfDot ->
       let (beforeDot, afterDot) = divideBy posOfDot s
       in case findIndex isE afterDot of
@@ -257,19 +266,19 @@ suitsToken s (TNumber _) =
           then (False, True)
           else toTuple(isInt beforeDot && isInt afterDot)
         Just posOfE ->
-          let 
+          let
           beforeEIsGood = (length beforeDot > 0 || length beforeE > 0)
             && isInt beforeDot && isInt beforeE
           (beforeE, afterE) = divideBy posOfE afterDot
           in case findIndex isOp afterE of
             Nothing ->
-              if (beforeEIsGood && isInt afterE && length afterE == 0)
-              then (False, True)
+              if (length afterE == 0)
+              then (False, beforeEIsGood && isInt afterE)
               else toTuple (beforeEIsGood && isInt afterE)
             Just _ ->
               let (_, afterOp) = splitAt 1 afterE
-              in if (beforeEIsGood && isInt afterE && length afterOp == 0)
-              then (False, True)
+              in if (length afterOp == 0)
+              then (False, beforeEIsGood)
               else toTuple(beforeEIsGood && isInt afterOp)
 -- === Character
 suitsToken s (TCharacter _)
@@ -336,9 +345,9 @@ putLiteral :: String -> Token -> Token
 putLiteral s (TComment _) = TComment . init . tail $ s
 putLiteral s (TKeyword _)  = TKeyword s
 putLiteral s (TId _)   = TId s
-putLiteral s (TBinConstant _) = TBinConstant s
-putLiteral s (TDecConstant _) = TDecConstant s
-putLiteral s (THexConstant _) = THexConstant s
+putLiteral s (TBinConstant _) = TBinConstant . init . drop 2 $ s
+putLiteral s (TOctConstant _) = TOctConstant . init . drop 2 $ s
+putLiteral s (THexConstant _) = THexConstant . init . drop 2 $ s
 putLiteral s (TNumber _)  = TNumber s
 putLiteral s (TCharacter _) = TCharacter . init . tail $ s
 putLiteral _ token = token
