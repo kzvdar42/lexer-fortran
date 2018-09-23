@@ -1,6 +1,6 @@
 # FORTRAN95 lexical analyzer
-This project is a hand-written parser for FORTRAN95 programming language lexem parsing.
-Used language: Haskell
+This project is a hand-written parser for FORTRAN95 programming language lexem parsing.  
+Used language: Haskell  
 Authors: Denis Chernikov, Vladislav Kuleykin
 ## How to run
 From main folder of the project (Haskell Environment could be installed):
