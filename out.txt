@@ -1,0 +1,659 @@
+TComment " ------------------------------------------------------------------------------"
+TComment " Copyright (c) 2009-13, Thomas P. Robitaille"
+TComment ""
+TComment " All rights reserved."
+TComment ""
+TComment " Redistribution and use in source and binary forms, with or without"
+TComment " modification, are permitted provided that the following conditions are met:"
+TComment ""
+TComment "  * Redistributions of source code must retain the above copyright notice, this"
+TComment "    list of conditions and the following disclaimer."
+TComment ""
+TComment "  * Redistributions in binary form must reproduce the above copyright notice,"
+TComment "    this list of conditions and the following disclaimer in the documentation"
+TComment "    and/or other materials provided with the distribution."
+TComment ""
+TComment " THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\""
+TComment " AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE"
+TComment " IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE"
+TComment " DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE"
+TComment " FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL"
+TComment " DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR"
+TComment " SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER"
+TComment " CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,"
+TComment " OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE"
+TComment " OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+TComment " ------------------------------------------------------------------------------"
+TNewLine
+TKeyword "module"
+TId "lib_constants"
+TNewLine
+TNewLine
+TKeyword "implicit"
+TKeyword "none"
+TNewLine
+TKeyword "save"
+TNewLine
+TNewLine
+TKeyword "integer"
+TComma
+TKeyword "parameter"
+TComma
+TKeyword "private"
+TDblColon
+TId "sp"
+TEquals
+TId "selected_real_kind"
+TLParen
+TId "p"
+TEquals
+TNumber "6"
+TComma
+TId "r"
+TEquals
+TNumber "37"
+TRParen
+TNewLine
+TKeyword "integer"
+TComma
+TKeyword "parameter"
+TComma
+TKeyword "private"
+TDblColon
+TId "dp"
+TEquals
+TId "selected_real_kind"
+TLParen
+TId "p"
+TEquals
+TNumber "15"
+TComma
+TId "r"
+TEquals
+TNumber "307"
+TRParen
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "zero_sp"
+TEquals
+TNumber "0."
+TId "_sp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "zero_dp"
+TEquals
+TNumber "0."
+TId "_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "zero"
+TEquals
+TNumber "0."
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "half"
+TEquals
+TNumber "0.5"
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "one"
+TEquals
+TNumber "1."
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "two"
+TEquals
+TNumber "2."
+TId "_dp"
+TNewLine
+TNewLine
+TComment " Physical constants  "
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "G_cgs"
+TEquals
+TNumber "6.67300"
+TId "d"
+TMinus
+TNumber "08"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "G_si"
+TEquals
+TNumber "6.67300"
+TId "d"
+TMinus
+TNumber "11"
+TNewLine
+TNewLine
+TComment "  N = kg.m/s^2 = [G]*kg^2/m**2"
+TComment "  [G] = m^3/s^2/kg"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "k_cgs"
+TEquals
+TNumber "1.380650424"
+TId "d"
+TMinus
+TNumber "16"
+TComment " erg/K"
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "k_si"
+TEquals
+TNumber "1.380650424"
+TId "d"
+TMinus
+TNumber "23"
+TComment "   J/K"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "h_cgs"
+TEquals
+TNumber "6.6260689633"
+TId "d"
+TMinus
+TNumber "27"
+TComment " ergs.s  "
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "h_si"
+TEquals
+TNumber "6.6260689633e-34"
+TId "_dp"
+TComment "    J.s"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "c_si"
+TEquals
+TNumber "2.99792458e08"
+TId "_dp"
+TComment " m / s"
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "c_cgs"
+TEquals
+TNumber "2.99792458e10"
+TId "_dp"
+TComment " cm / s"
+TComment " speed of light"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "kpc_si"
+TEquals
+TNumber "3.08568025e19"
+TId "_dp"
+TComment " m"
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "kpc_cgs"
+TEquals
+TNumber "3.08568025e21"
+TId "_dp"
+TComment " cm"
+TComment " kiloparsec"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "pi"
+TEquals
+TNumber "3.14159265358979323846"
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "pi_sp"
+TEquals
+TNumber "3.14159265358979323846"
+TId "_sp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "pi_dp"
+TEquals
+TNumber "3.14159265358979323846"
+TId "_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "twopi"
+TEquals
+TId "pi"
+TPlus
+TId "pi"
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "twopi_sp"
+TEquals
+TId "pi_sp"
+TPlus
+TId "pi_sp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "twopi_dp"
+TEquals
+TId "pi_dp"
+TPlus
+TId "pi_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "deg2rad"
+TEquals
+TId "pi"
+TSlash
+TNumber "180."
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "rad2deg"
+TEquals
+TNumber "180."
+TId "_dp"
+TSlash
+TId "pi"
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "deg2rad_sp"
+TEquals
+TId "pi_sp"
+TSlash
+TNumber "180."
+TId "_sp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "rad2deg_sp"
+TEquals
+TNumber "180."
+TId "_sp"
+TSlash
+TId "pi_sp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "deg2rad_dp"
+TEquals
+TId "pi_dp"
+TSlash
+TNumber "180."
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "rad2deg_dp"
+TEquals
+TNumber "180."
+TId "_dp"
+TSlash
+TId "pi_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "lsun_cgs"
+TEquals
+TNumber "3.846e33"
+TId "_dp"
+TComment " erg/s"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "rsun_cgs"
+TEquals
+TNumber "6.95508e10"
+TId "_dp"
+TComment " cm"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "au_cgs"
+TEquals
+TNumber "1.49598e13"
+TId "_dp"
+TComment " cm"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "year_cgs"
+TEquals
+TNumber "3600."
+TId "_dp"
+TAsterisk
+TNumber "24."
+TId "_dp"
+TAsterisk
+TNumber "365.25"
+TId "_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "msun_cgs"
+TEquals
+TNumber "1.989e33"
+TId "_dp"
+TComment " g"
+TComment " Conversions"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "ergs2mJy"
+TEquals
+TNumber "1.e26"
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "microns2cm"
+TEquals
+TNumber "1.e-4"
+TId "_dp"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "microns2m"
+TEquals
+TNumber "1.e-6"
+TId "_dp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TComma
+TKeyword "parameter"
+TDblColon
+TId "stef_boltz"
+TEquals
+TNumber "5.670400e-5"
+TId "_dp"
+TNewLine
+TNewLine
+TKeyword "contains"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TKeyword "function"
+TId "infinity_sp"
+TLParen
+TRParen
+TNewLine
+TKeyword "implicit"
+TKeyword "none"
+TNewLine
+TKeyword "real"
+TLParen
+TId "sp"
+TRParen
+TDblColon
+TId "x"
+TNewLine
+TId "x"
+TEquals
+TId "huge"
+TLParen
+TNumber "1."
+TId "_sp"
+TRParen
+TNewLine
+TId "infinity_sp"
+TEquals
+TId "x"
+TPlus
+TId "x"
+TNewLine
+TKeyword "end"
+TKeyword "function"
+TId "infinity_sp"
+TNewLine
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TKeyword "function"
+TId "infinity_dp"
+TLParen
+TRParen
+TNewLine
+TKeyword "implicit"
+TKeyword "none"
+TNewLine
+TKeyword "real"
+TLParen
+TId "dp"
+TRParen
+TDblColon
+TId "x"
+TNewLine
+TId "x"
+TEquals
+TId "huge"
+TLParen
+TNumber "1."
+TId "_dp"
+TRParen
+TNewLine
+TId "infinity_dp"
+TEquals
+TId "x"
+TPlus
+TId "x"
+TNewLine
+TKeyword "end"
+TKeyword "function"
+TId "infinity_dp"
+TNewLine
+TNewLine
+TKeyword "end"
+TKeyword "module"
+TId "lib_constants"
+TEof

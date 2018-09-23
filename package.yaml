@@ -1,0 +1,46 @@
+name:                lex-fortran
+version:             0.1.0.0
+license:             BSD3
+author:              "Denis Chernikov, Vladislav Kuleykin"
+maintainer:          "d.chernikov@innopolis.ru, v.kuleykin@innopolis.ru"
+copyright:           "2018 Innopolis University"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Lexical analyser for FORTRAN95 programming language
+category:            Compilation
+
+dependencies:
+- base >= 4.7 && < 5
+- text
+
+library:
+  source-dirs: src
+
+executables:
+  lex-fortran-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - lex-fortran
+
+tests:
+  lex-fortran-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - lex-fortran
+    - call-stack
+    - deepseq
+    - HUnit >= 1.6
