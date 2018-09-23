@@ -189,21 +189,25 @@ suitsToken s (TBinConstant _)
   | first && length s == 1 = (False, True)
   | first &&
     (second == '\'' || second == '"') && isBinary (drop 2 s) = (False, True)
-  | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
-  | first && second == '"' && fromThird s && last s == '"' = (True, True)
+  | first && second == '\'' && fromThird s 
+    && last s == '\'' && length s > 3 = (True, True)
+  | first && second == '"'  && fromThird s 
+    && last s == '"'  && length s > 3 = (True, True)
   | otherwise = (False, False)
   where
     first = (toUpper $ head s) == 'B' 
     second = s !! 1
     fromThird str = isBinary . drop 2 $ init str
     isBinary [] = True
-    isBinary (c:cs) = (c == '1' || c == '0') && isBinary cs
+    isBinary (ch:chs) = (ch == '1' || ch == '0') && isBinary chs
 suitsToken s (TOctConstant _)
   | first && length s == 1 = (False, True)
   | first &&
     (second == '\'' || second == '"') && isOct (drop 2 s) = (False, True)
-  | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
-  | first && second == '"' && fromThird s && last s == '"' = (True, True)
+  | first && second == '\'' && fromThird s 
+    && last s == '\'' && length s > 3 = (True, True)
+  | first && second == '"'  && fromThird s 
+    && last s == '"'  && length s > 3 = (True, True)
   | otherwise = (False, False)
   where
     first = (toUpper $ head s) == 'O' 
@@ -217,8 +221,10 @@ suitsToken s (THexConstant _)
   | first && length s == 1 = (False, True)
   | first &&
     (second == '\'' || second == '"') && isHec (drop 2 s) = (False, True)
-  | first && second == '\'' && fromThird s && last s == '\'' = (True, True)
-  | first && second == '"' && fromThird s && last s == '"' = (True, True)
+  | first && second == '\'' && fromThird s 
+    && last s == '\'' && length s > 3 = (True, True)
+  | first && second == '"'  && fromThird s 
+    && last s == '"'  && length s > 3 = (True, True)
   | otherwise = (False, False)
   where
     first = (toUpper $ head s) == 'Z' 
