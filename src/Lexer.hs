@@ -411,7 +411,7 @@ nextToken state =
   let (newState, tokenMaybe) = proceedChar state
   in case tokenMaybe of
     Nothing -> nextToken newState
-    Just TWs -> nextToken newState
+    Just TWs -> nextToken newState -- Note: may depend on the language
     Just token -> (newState, token)
 
 -- | Recursively parse a given parser state
