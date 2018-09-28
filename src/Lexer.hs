@@ -3,7 +3,7 @@
 -- | Parse the FORTRAN95 programming language source file.
 module Lexer where
 
-import Data.Char (toUpper, isLetter, isDigit)
+import Data.Char (isDigit, isLetter, toUpper)
 import Data.List (find, findIndex)
 import Data.Text (pack)
 import System.Environment
