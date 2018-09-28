@@ -33,9 +33,9 @@ getParser :: String -> Parser
 parse :: String -> [Token]
 ```
 * Question mark `?` is parsed as a one that is allowed in the language, but no usage of it was actually found.
-* FORTRAN95 has kind type parameters for literal constants, but our lexer parses them as individual id tokens, so we left them for the syntax analiser to consider.
+* FORTRAN95 has kind type parameters for literal constants, but our lexer parses them as individual `TId` tokens, so we left them for the syntax analyzer to be considered.
 * No generalization of functions was applied, but places where changes could be done are obviously pointed by comments and docs.
-* We aggregated all numeric constants into `TNumber` token
+* We have aggregated all numeric constants into `TNumber` token.
 * All number signs (except the exponent sign inside `TNumber`) are left for the syntax analyzer as unary operators.
 * Complex numbers, like `(3.5, -2.17e-5)` are left to the syntax anayzer (it is easy to handle them by syntax also).
 * `Character` - name of datatype in Fortran, which is equivalent to a single character or a sequence of characters (actually - string).
@@ -82,7 +82,7 @@ sumEven (head:tail)
   | isEven head = head + sumEven tail
   | otherwise = sumEven tail
 
--- Finally - carrying.
+-- Finally - carrying (partial function application).
 -- f 1 (sum [1, 2, 3]) == (f) 1 (sum [1, 2, 3]) == (f 1) (sum [1, 2, 3])
 ```
 ## Tokens specification
@@ -100,15 +100,15 @@ sumEven (head:tail)
 ```
 ### TBinConstant
 ```regex
-B["'][01]+["']
+B(\"[01]+\"|'[01]+')
 ```
 ### TOctConstant
 ```regex
-O["'][0-7]+["']
+O(\"[0-7]+\"|'[0-7]+')
 ```
 ### THexConstant
 ```regex
-Z["'][0-9A-Fa-f]+["']
+Z(\"[0-9A-Fa-f]+\"|'[0-9A-Fa-f]+')
 ```
 ### TNumber
 ```regex
