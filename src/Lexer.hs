@@ -164,14 +164,11 @@ suitsToken :: String -> Token -> Validity
 suitsToken "" _ = (False, False)
 -- === Comments
 suitsToken s (TComment _)
-  | (head s) == '!' && (noNewLineInside $ tail s) &&
-    (last s) == '\n' && length s > 1 = (True, True)
-  | (head s) == '!' && (noNewLineInside $ tail s) = (False, True)
+  | (head s) == '!' && (noNewLineInside $ tail s) = (True, True)
   | otherwise = (False, False)
   where
     noNewLineInside []       = True
-    noNewLineInside (ch:[])  = True
-    noNewLineInside (ch:chs) = ch /= '\n' && noNewLineInside chs
+    noNewLineInside (ch:chs) = ch /= '\n' && ch /= '\r' && noNewLineInside chs
 -- === Keywords
 suitsToken s (TKeyword _) = isSubForList keywords s
 -- === Identifier
@@ -340,7 +337,7 @@ suitsToken s TLogNotEq    = isSubstring ".NEQV." s
 suitsToken s TTrue        = isSubstring ".TRUE." s
 suitsToken s TFalse       = isSubstring ".FALSE." s
 -- === Whitespace
-suitsToken s TWs = isSubForList [" ", "\t", "\v", "\f", "&\n"] s
+suitsToken s TWs = isSubForList [" ", "\t", "\v", "\f", "&\n", "&\r", "&\r\n"] s
 -- === Others
 suitsToken _ (TError _) = (False, False)
 suitsToken _ TEof = (False, False)
@@ -348,7 +345,7 @@ suitsToken _ TEof = (False, False)
 -- | Pack given literal into the
 -- token of a given type (if needed).
 putLiteral :: String -> Token -> Token
-putLiteral s (TComment _) = TComment . init . tail $ s
+putLiteral s (TComment _) = TComment . tail $ s
 putLiteral s (TKeyword _)  = TKeyword s
 putLiteral s (TId _)   = TId s
 putLiteral s (TBinConstant _) = TBinConstant . init . drop 2 $ s
