@@ -88,7 +88,7 @@ sumEven (head:tail)
 ## Tokens specification
 ### TComment
 ```regex
-!.*\n
+!.*$
 ```
 ### TKeyword
 ```regex
@@ -146,5 +146,5 @@ See `TNot`.
 ```
 ### TWs
 ```regex
-[ \t\v\f]|&\n
+[ \t\v\f]|&\n|&\r|&\r\n
 ```
