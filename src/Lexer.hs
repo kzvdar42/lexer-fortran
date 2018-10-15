@@ -232,6 +232,7 @@ suitsToken s (THexConstant _)
         isDigit ch || (fst $ isSubForList ["A","B","C","D","E","F"] [ch])
       ) && isHec chs
 -- === Number
+-- TODO: Add support for kind type parameters.
 suitsToken s (TNumber _) =
   let 
     isDot = (\c -> c == '.')
